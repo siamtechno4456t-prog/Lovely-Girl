@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini App Store</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      margin: 0;
+    }
+    header {
+      background: #1e293b;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .container {
+      padding: 10px;
+    }
+    .app {
+      background: #1e293b;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    button {
+      background: #22c55e;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      color: white;
+    }
+    input {
+      padding: 8px;
+      width: 100%;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>📱 Mini App Store</header>
+
+<div class="container">
+
+  <h3>Upload App</h3>
+  <input type="text" id="appName" placeholder="App Name">
+  <input type="text" id="appLink" placeholder="App Download Link">
+  <button onclick="uploadApp()">Upload</button>
+
+  <h3>Apps</h3>
+  <div id="appList"></div>
+
+</div>
+
+<script>
+  let apps = [];
+
+  function uploadApp() {
+    let name = document.getElementById("appName").value;
+    let link = document.getElementById("appLink").value;
+
+    if(name && link) {
+      apps.push({name, link});
+      displayApps();
+    } else {
+      alert("Fill all fields!");
+    }
+  }
+
+  function displayApps() {
+    let list = document.getElementById("appList");
+    list.innerHTML = "";
+
+    apps.forEach(app => {
+      list.innerHTML += `
+        <div class="app">
+          <h4>${app.name}</h4>
+          <a href="${app.link}" target="_blank">
+            <button>Download</button>
+          </a>
+        </div>
+      `;
+    });
+  }
+</script>
+
+</body>
+</html>
